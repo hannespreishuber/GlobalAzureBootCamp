@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/seminarController.js"></script>
+    <script src="app/seminareFactory.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="/signalr/hubs/"></script>
+</head>
+<body ng-app="App" ng-controller="seminarController">
+    <div class="container">
+
+        <div class="page-header">
+            ppedv Schulungen
+        </div>
+        <div class="row">
+            
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    <span class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..."
+                                ng-model="search" ng-model-options="{updateOn:'blur'}">
+                 
+                            <button class="btn btn-default input-group-addon" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                </div>
+            </div><!-- /input-group -->
+
+        </div>
+        <div class="row">
+
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="s in seminare | filter:search">
+                    {{s.Seminar1}}<span class="pull-right">{{s.Datum | date:'dd.MMM.yyyy'}}</span>
+
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="row">
+
+
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Schulung</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Titel</label>
+                        <div class="col-md-4">
+                            <input name="textinput"
+                                   ng-model="vm.Seminar1"
+                                   class="form-control input-md" id="textinput" type="text" placeholder="Seminar">
+                            <span class="help-block">den Namen eingeben</span>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Termin</label>
+                        <div class="col-md-4">
+                            <input name="textinput"
+                                   ng-model="vm.Datum"
+                                   class="form-control input-md" id="textinput" type="text" placeholder="placeholder">
+                            <span class="help-block">Gewünschter Termin eingeben</span>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+
+                        <div class="col-md-4">
+                            <button name="singlebutton"
+                                    ng-click="save(vm)"
+                                    class="btn btn-primary" id="singlebutton">
+                                save
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
